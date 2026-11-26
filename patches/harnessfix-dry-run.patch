@@ -1,0 +1,34 @@
+diff --git a/run_pipeline_swe.py b/run_pipeline_swe.py
+index b5a904c..a9bd358 100644
+--- a/run_pipeline_swe.py
++++ b/run_pipeline_swe.py
+@@ -313,11 +313,15 @@ def step_train_failure_analysis(model: str, base_version: int,
+     log(f"Step 2: train failure analysis → {output_file.name}")
+ 
+     eval_json = find_eval_json(train_eval_dir_path)
+-    if eval_json is None:
++    if eval_json is None and not dry_run:
+         raise FileNotFoundError(f"No train eval JSON found under {train_eval_dir_path}")
+-    expected_ids = expected_failed_ids_from_eval(eval_json)
++    # A dry run has printed, but not executed, the preceding evaluator command.
++    # Keep its report symbolic; never create a fake report or read missing data.
++    if dry_run:
++        eval_json = eval_json or train_eval_dir_path / "<pending-evaluation-report>.json"
++    expected_ids = set() if dry_run else expected_failed_ids_from_eval(eval_json)
+ 
+-    if output_file.exists() and not force:
++    if output_file.exists() and not force and not dry_run:
+         completed_ids = completed_analysis_ids(output_file)
+         if expected_ids <= completed_ids:
+             log(f"  train failure analyses complete ({len(expected_ids)}/{len(expected_ids)}), skipping")
+@@ -1362,6 +1366,10 @@ def main():
+             log(f"Stopping: {consecutive_promotion_failures} consecutive candidates were not promoted.")
+             break
+ 
++    if args.dry_run:
++        log("Dry run complete. No inference, diagnosis, repair, or benchmark evaluation was executed.")
++        return
++
+     best_version = best_version_by_val(args.model, promoted_versions)
+     best_dir = base_agent_dir(best_version)
+     best_eval = val_eval_dir_for_base(args.model, best_version)

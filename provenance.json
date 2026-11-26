@@ -1,0 +1,24 @@
+{
+  "checked_on": "2026-11-26",
+  "source_paper": {
+    "path": "../40476_TrajFix_Correcting_Faile.pdf",
+    "sha256": "d645d09ef45f16291f51ef51b5e87951226d7f332c4b4f6138f9d3c979a61db4"
+  },
+  "baseline": {
+    "name": "HarnessFix",
+    "url": "https://github.com/HarnessFix/HarnessFix",
+    "commit": "9167a0b9a58748c73b56c3ee04fdc3437ba0c56e",
+    "official": true
+  },
+  "trajfix_code_status": "No official repository located in PDF, exact-title web search, or GitHub repository search. Not a claim of proven absence.",
+  "runtime_venv": "/tmp/trajfix-baselines-venv",
+  "runtime": {
+    "swebench": "4.1.0",
+    "docker": "29.10.1",
+    "storage_driver": "vfs",
+    "socket": "unix:///tmp/trajfix-docker/run/docker.sock",
+    "instance_image": "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest",
+    "image_digest": "sha256:e082963099ed7d5a5f75a0be46e338be36faae33b2cba5289a9ddbd505997f1f",
+    "model": "openai/deepseek-v4-pro"
+  }
+}

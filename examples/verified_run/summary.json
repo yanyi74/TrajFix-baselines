@@ -1,0 +1,57 @@
+{
+  "instance_id": "astropy__astropy-12907",
+  "scope": "single_task_base_agent_end_to_end_smoke",
+  "harnessfix_diagnosis_or_repair_executed": false,
+  "trajfix_reproduced": false,
+  "cases": {
+    "gold": {
+      "resolved": true,
+      "patch_applied": true,
+      "report_path": "examples/verified_run/gold.report.json",
+      "FAIL_TO_PASS": {
+        "passed": 2,
+        "failed": 0
+      },
+      "PASS_TO_PASS": {
+        "passed": 13,
+        "failed": 0
+      }
+    },
+    "noop": {
+      "resolved": false,
+      "patch_applied": true,
+      "report_path": "examples/verified_run/noop.report.json",
+      "FAIL_TO_PASS": {
+        "passed": 0,
+        "failed": 2
+      },
+      "PASS_TO_PASS": {
+        "passed": 13,
+        "failed": 0
+      }
+    },
+    "model": {
+      "resolved": true,
+      "patch_applied": true,
+      "report_path": "examples/verified_run/model.report.json",
+      "FAIL_TO_PASS": {
+        "passed": 2,
+        "failed": 0
+      },
+      "PASS_TO_PASS": {
+        "passed": 13,
+        "failed": 0
+      }
+    }
+  },
+  "rollout": {
+    "instance_id": "astropy__astropy-12907",
+    "model": "openai/deepseek-v4-pro",
+    "exit_status": "Submitted",
+    "api_calls": 17,
+    "wall_seconds": 145.15,
+    "patch_bytes": 504,
+    "gold_or_test_patch_in_prompt": false,
+    "benchmark_verified": true
+  }
+}
